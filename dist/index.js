@@ -4115,14 +4115,6 @@ module.exports = new Type('tag:yaml.org,2002:timestamp', {
 "use strict";
 module.exports = require("fs");
 
-/***/ }),
-
-/***/ 17:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("path");
-
 /***/ })
 
 /******/ 	});
@@ -4167,13 +4159,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const fs = __nccwpck_require__(147);
-const path = __nccwpck_require__(17);
 const yaml = __nccwpck_require__(607);
 
-const yamlFilePath = process.env.INPUT_YAML_FILE;
-const svgOutputPath = path.join(__dirname, 'readme-typing.svg');
-
-const yamlText = fs.readFileSync(yamlFilePath, 'utf8');
+const yamlText = fs.readFileSync('input.yaml', 'utf8');
 const [yamlData] = yaml.loadAll(yamlText);
 const data = yamlData.texts
 
@@ -4201,7 +4189,7 @@ function generateSvg(texts) {
 }
 
 const svg = generateSvg(data);
-fs.writeFileSync(svgOutputPath, svg)
+fs.writeFileSync('readme-typing.svg', svg)
 const readmeContent = fs.readFileSync('README.md', 'utf8');
 
 const startTag = '<!-- START:readme-typing -->';

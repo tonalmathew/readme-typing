@@ -1,11 +1,7 @@
 const fs = require('fs');
-const path = require('path');
 const yaml = require('js-yaml');
 
-const yamlFilePath = process.env.INPUT_YAML_FILE;
-const svgOutputPath = path.join(__dirname, 'readme-typing.svg');
-
-const yamlText = fs.readFileSync(yamlFilePath, 'utf8');
+const yamlText = fs.readFileSync('input.yaml', 'utf8');
 const [yamlData] = yaml.loadAll(yamlText);
 const data = yamlData.texts
 

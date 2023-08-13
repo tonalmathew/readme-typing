@@ -18,4 +18,4 @@ jobs:
       uses: ./
 
       with:
-        yaml-file: ${{ github.workspace }}/input.yaml
+        yaml-file: input.yaml
