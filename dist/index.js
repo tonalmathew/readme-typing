@@ -4201,7 +4201,7 @@ function generateSvg(texts) {
 }
 
 const svg = generateSvg(data);
-fs.writeFileSync('readme-typing.svg', svg)
+fs.writeFileSync(svgOutputPath, svg)
 const readmeContent = fs.readFileSync('README.md', 'utf8');
 
 const startTag = '<!-- START:readme-typing -->';
