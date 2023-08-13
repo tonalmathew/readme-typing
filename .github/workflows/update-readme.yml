@@ -27,7 +27,7 @@ jobs:
       run: npm ci
 
     - name: Run the action
-      uses: ./
+      uses: node src/main.js
 
       with:
-        yaml-file: input.yaml
+        yaml-file: ${{ github.workspace }}/input.yaml
