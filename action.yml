@@ -1,0 +1,13 @@
+name: 'Typing - SVG Text'
+author: 'Tonal Mathew'
+description: 'Text to svg in readme'
+
+inputs:
+  yaml-file:
+    description: 'Path to the YAML file contining the text data'
+    required: true
+    default: 'input.yaml'
+
+runs: 
+  using: 'node18'
+  main: 'src/main.js'
