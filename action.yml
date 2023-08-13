@@ -9,5 +9,5 @@ inputs:
     default: 'input.yaml'
 
 runs: 
-  using: 'node18'
+  using: 'node16'
   main: 'src/main.js'
