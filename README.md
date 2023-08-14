@@ -1,4 +1,3 @@
-# readme-typing
+# Test text line 1
 
-<!-- START:readme-typing -->
-<!-- END:readme-typing -->
+#  Test text line 2
