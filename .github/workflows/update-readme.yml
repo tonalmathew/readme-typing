@@ -13,8 +13,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GH_TOKEN }}
 
     - name: Run the action
       uses: ./
       with:
         input-text: 'Test text line 1, Test text line 2'
+
+    - name: Commit and push if it changed
+      run: |
+        git diff
+        git commit -am "Automated README update" || exit 0
+        git push
