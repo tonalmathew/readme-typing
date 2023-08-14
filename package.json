@@ -1,6 +1,6 @@
 {
   "name": "typing",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Text to svg in readme",
   "main": "src/index.js",
   "scripts": {
