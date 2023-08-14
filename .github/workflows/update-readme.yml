@@ -19,7 +19,9 @@ jobs:
     - name: Run the action
       uses: ./
       with:
-        input-text: ['Test text line 1', 'Test text line 2']
+        input-text: 
+          - 'Test text line 1' 
+          - 'Test text line 2'
 
     - name: Commit and push if it changed
       run: |
