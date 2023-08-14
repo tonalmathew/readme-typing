@@ -26,6 +26,8 @@ jobs:
 
     - name: Commit and push if it changed
       run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
         git add readme-typing.svg
         git commit -m "[feat] update readme-typing.svg" || exit 0
         git push origin ${{ github.head_ref }}
