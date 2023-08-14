@@ -13,11 +13,11 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 
-const textArray = []
 
 async function run() {
   try {
-    textArray.push(core.getInput('input-text'));
+    const inputText = core.getInput('input-text');
+    const textArray = inputText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
     console.log(textArray)
     // const readmeContent = textArray.map(text => `# ${text}`).join('\n\n');
     // fs.writeFileSync('README.md', readmeContent);
