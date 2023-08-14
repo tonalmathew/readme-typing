@@ -5,7 +5,7 @@
           </path>
           <text font-family="monospace" fill="#36BCF7" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
             <textPath xlink:href="#path0">
-              Test text line 1
+              hello, from svg typing.
             </textPath>
           </text>
           <path id="path1">
@@ -13,7 +13,7 @@
           </path>
           <text font-family="monospace" fill="#36BCF7" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
             <textPath xlink:href="#path1">
-              Test text line 2
+              This is dyamically generated.
             </textPath>
           </text>
 </svg>
