@@ -13,23 +13,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
-        token: ${{ secrets.GH_TOKEN }}
 
     - name: Run the action
       uses: ./
       with:
+        token: ${{ secret.GH_TOKEN }}
         input-text: |
           hello, from svg typing.
           This is dyamically generated.
           Hmm...
-
-    - name: Commit and push if it changed
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add readme-typing.svg
-        git commit -m "[feat] update readme-typing.svg" || exit 0
-        git push origin ${{ github.head_ref }}
-        echo "Changes committed and pushed."
