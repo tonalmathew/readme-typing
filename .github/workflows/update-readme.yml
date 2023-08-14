@@ -16,6 +16,3 @@ jobs:
 
     - name: Run the action
       uses: ./
-
-      with:
-        input-text:
