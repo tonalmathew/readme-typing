@@ -19,5 +19,3 @@ jobs:
 
       with:
         input-text:
-          - My name is NoOne
-          - I'm under the water
