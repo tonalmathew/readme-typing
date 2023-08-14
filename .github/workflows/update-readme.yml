@@ -24,5 +24,7 @@ jobs:
     - name: Commit and push if it changed
       run: |
         git diff
+        git config --global user.email "tonalmathew.dev@gmail.com"
+        git config --global user.name "Tonal Mathew"
         git commit -am "Automated README update" || exit 0
         git push
