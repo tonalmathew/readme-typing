@@ -3,6 +3,8 @@ author: 'Tonal Mathew'
 description: 'Text to svg in readme'
 
 inputs:
+  GH_TOKEN:
+    description: 'PAT with repo scope'
   input-text:
     description: 'Text to be displayed as svg'
     required: true
