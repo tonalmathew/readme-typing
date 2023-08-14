@@ -9826,9 +9826,11 @@ const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const fs = __nccwpck_require__(7147);
 
+const textArray = []
+
 async function run() {
   try {
-    const textArray = core.getInput('input-text');
+    textArray.push(core.getInput('input-text'));
     console.log(textArray)
     // const readmeContent = textArray.map(text => `# ${text}`).join('\n\n');
     // fs.writeFileSync('README.md', readmeContent);
