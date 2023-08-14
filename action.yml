@@ -6,6 +6,9 @@ inputs:
   input-text:
     description: 'Text to be displayed as svg'
     required: true
+    type: array
+    items:
+      type: string
 
 runs: 
   using: 'node16'
