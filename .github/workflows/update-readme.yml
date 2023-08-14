@@ -8,11 +8,10 @@ on:
 
 jobs:
   update-readme:
-    runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
     - name: Run the action
       uses: ./
+      with:
+        input-text:
+          - Test text line 1
+          - Test text line 2

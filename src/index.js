@@ -4,8 +4,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  const ymlText = core.getInput('input-text')
-  console.log('testing', ymlText)
+  const inputText = core.getInput('input-text')
+  console.log('testing', inputText)
 } catch (error) {
   core.setFailed(error.message);
 }
