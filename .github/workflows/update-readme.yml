@@ -14,6 +14,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       with:
+        ref: ${{ github.head_ref }}
         token: ${{ secrets.GH_TOKEN }}
 
     - name: Run the action
@@ -26,8 +27,6 @@ jobs:
     - name: Commit and push if it changed
       run: |
         git diff
-        git config --global user.email "tonalmathew.dev@gmail.com"
-        git config --global user.name "Tonal Mathew"
         git add readme-typing.svg
         git commit -am "[feat] add readme-typing.svg" || exit 0
-        git push
+        git push origin ${{ github.head_ref }}
