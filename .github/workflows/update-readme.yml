@@ -21,12 +21,11 @@ jobs:
       uses: ./
       with:
         input-text: |
-          hello, from svg typing 
-          This is dyamically generated
+          hello, from svg typing.
+          This is dyamically generated.
 
     - name: Commit and push if it changed
       run: |
-        git diff
         git add readme-typing.svg
-        git commit -am "[feat] add readme-typing.svg" || exit 0
+        git commit -m "[feat] update readme-typing.svg" || exit 0
         git push origin ${{ github.head_ref }}
