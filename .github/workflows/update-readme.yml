@@ -15,6 +15,6 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Run the action
-      uses: ./.github/actions/readme-typing
+      uses: ./
       with:
         input-text: 'Test text line 1, Test text line 2'
