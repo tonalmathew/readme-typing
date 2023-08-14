@@ -10,8 +10,6 @@ jobs:
   update-readme:
     steps:
     - name: Run the action
-      uses: ./
+      uses: ./.github/actions/readme-typing
       with:
-        input-text:
-          - Test text line 1
-          - Test text line 2
+        input-text: 'Test text line 1, Test text line 2'
