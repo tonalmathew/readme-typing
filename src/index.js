@@ -1,14 +1,29 @@
-const fs = require('fs');
-const yaml = require('js-yaml');
+// const fs = require('fs');
+// const yaml = require('js-yaml');
+// const core = require('@actions/core');
+// const github = require('@actions/github');
+
+// try {
+//   const inputText = core.getInput('input-text')
+//   console.log('testing', inputText)
+// } catch (error) {
+//   core.setFailed(error.message);
+// }
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fs = require('fs');
 
-try {
-  const inputText = core.getInput('input-text')
-  console.log('testing', inputText)
-} catch (error) {
-  core.setFailed(error.message);
+async function run() {
+  try {
+    const textArray = core.getInput('textArray').split(',');
+    const readmeContent = textArray.map(text => `# ${text}`).join('\n\n');
+    fs.writeFileSync('README.md', readmeContent);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
+
+run();
 // const yamlText = fs.readFileSync('input.yaml', 'utf8');
 // const [yamlData] = yaml.loadAll(yamlText);
 // const data = yamlData.texts
