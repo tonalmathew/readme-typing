@@ -16,6 +16,7 @@ const fs = require('fs');
 async function run() {
   try {
     const textArray = core.getInput('textArray').split(',');
+    console.log(textArray)
     const readmeContent = textArray.map(text => `# ${text}`).join('\n\n');
     fs.writeFileSync('README.md', readmeContent);
   } catch (error) {

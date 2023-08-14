@@ -9829,6 +9829,7 @@ const fs = __nccwpck_require__(7147);
 async function run() {
   try {
     const textArray = core.getInput('textArray').split(',');
+    console.log(textArray)
     const readmeContent = textArray.map(text => `# ${text}`).join('\n\n');
     fs.writeFileSync('README.md', readmeContent);
   } catch (error) {
