@@ -21,8 +21,8 @@ jobs:
       uses: ./
       with:
         input-text: |
-          Test text line 1 
-          Test text line 2
+          hello, from svg typing 
+          This is dyamically generated
 
     - name: Commit and push if it changed
       run: |
