@@ -28,5 +28,6 @@ jobs:
         git diff
         git config --global user.email "tonalmathew.dev@gmail.com"
         git config --global user.name "Tonal Mathew"
-        git commit -am "Automated README update" || exit 0
+        git add readme-typing.svg
+        git commit -am "[feat] add readme-typing.svg" || exit 0
         git push
