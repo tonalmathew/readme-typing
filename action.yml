@@ -17,6 +17,10 @@ inputs:
     default: "41898282+github-actions[bot]@users.noreply.github.com"
     required: false
 
+branding:
+  color: blue
+  icon: activity
+
 runs: 
   using: 'node16'
   main: 'dist/index.js'
