@@ -9829,7 +9829,6 @@ __nccwpck_require__.r(__webpack_exports__);
 ;// CONCATENATED MODULE: ./src/typing.js
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
-const fs = __nccwpck_require__(7147);
 
 async function run() {
   try {
@@ -9892,8 +9891,7 @@ async function run() {
       }
     };
 
-    const {fileExist, sha} = await checkIfSvgFileExists();
-    console.log(fileExist, sha)
+    const { fileExist, sha } = await checkIfSvgFileExists();
 
     await octokit.rest.repos.createOrUpdateFileContents({
       owner: repo.owner,
@@ -9905,9 +9903,8 @@ async function run() {
         name: COMMITTER_NAME,
         email: COMMITTER_EMAIL
       },
-      sha: fileExist && sha 
+      sha: fileExist && sha
     });
-    // fs.writeFileSync('readme-typing.svg', svg)
 
     const { data: readmeData } = await octokit.rest.repos.getContent({
       owner: repo.owner,
@@ -9915,7 +9912,6 @@ async function run() {
       path: 'README.md',
     });
     const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
-    // const readmeContent = fs.readFileSync('README.md', 'utf8');
 
     const startTag = '<!-- START:readme-typing -->';
     const endTag = '<!-- END:readme-typing -->';
@@ -9939,7 +9935,6 @@ async function run() {
         sha: readmeData.sha
       });
 
-      // fs.writeFileSync('README.md', updatedReadme);
       console.log('SVG content added to README.md');
     } else {
       console.error('Could not locate start and end tags in README.md');
