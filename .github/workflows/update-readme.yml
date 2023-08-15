@@ -16,7 +16,7 @@ jobs:
         
     - name: Print branch
       run: |
-        echo "Branch ${{ github.context.ref }}"
+        echo "Branch ${{ github.ref }}"
         echo "Branch ${{ github.head_ref }}"
 
     - name: Run the action
