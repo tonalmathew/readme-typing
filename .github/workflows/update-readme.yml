@@ -17,6 +17,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         input-text: |
-          hello, from svg typing.
-          This is dyamically generated.
-          Hello!
+          Hello, from svg typing.
+          Add more text line by line.

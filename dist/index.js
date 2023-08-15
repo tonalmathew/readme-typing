@@ -9832,9 +9832,9 @@ const github = __nccwpck_require__(5438);
 
 async function run() {
   try {
-    const INPUT_TEXT = core.getInput('INPUT-TEXT');
-    const COMMITTER_NAME = core.getInput('COMMITTER-NAME');
-    const COMMITTER_EMAIL = core.getInput('COMMITTER-EMAIL');
+    const INPUT_TEXT = core.getInput('INPUT_TEXT');
+    const COMMITTER_NAME = core.getInput('COMMITTER_NAME');
+    const COMMITTER_EMAIL = core.getInput('COMMITTER_EMAIL');
     const textArray = INPUT_TEXT.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
     const generateSvg = (texts) => {

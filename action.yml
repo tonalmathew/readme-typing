@@ -1,18 +1,18 @@
-name: 'Typing - SVG Text'
+name: 'Typing - Readme SVG Text'
 author: 'Tonal Mathew'
 description: 'Text to svg in readme'
 
 inputs:
-  INPUT-TEXT:
+  INPUT_TEXT:
     description: 'Text to be displayed as svg'
     required: true
     type: string
     multiline: true
-  COMMITTER-NAME:
+  COMMITTER_NAME:
     description: "Name of the committer"
     default: "github-actions[bot]"
     required: false
-  COMMITTER-EMAIL: 
+  COMMITTER_EMAIL: 
     description: "Email of the committer"
     default: "41898282+github-actions[bot]@users.noreply.github.com"
     required: false
