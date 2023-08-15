@@ -9858,24 +9858,53 @@ async function run() {
       });
 
       svgContent += `\n</svg>`;
-      const svgDataUrl = `data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`;
-      return svgDataUrl;
+      return svgContent;
     }
 
     const svg = generateSvg(textArray);
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const repo = github.context.repo;
-    // await octokit.rest.repos.createOrUpdateFileContents({
-    //   owner: repo.owner,
-    //   repo: repo.repo,
-    //   path: 'readme-typing.svg',
-    //   message: 'create readme-typing.svg',
-    //   content: Buffer.from(svg).toString('base64'),
-    //   committer: {
-    //     name: COMMITTER_NAME,
-    //     email: COMMITTER_EMAIL
-    //   }
-    // });
+
+    const checkIfSvgFileExists = async () => {
+      try {
+        const { data: fileData } = await octokit.rest.repos.getContent({
+          owner: repo.owner,
+          repo: repo.repo,
+          path: 'readme-typing.svg',
+        });
+        console.log(fileData)
+        if (Array.isArray(fileData)) {
+          // File exists
+          console.log('readme-typing.svg file is already created');
+          // Perform actions for an existing file
+        } else {
+          // File does not exist
+          console.log('readme-typing.svg file needs to be created');
+          // Perform actions for a new file
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // File does not exist
+          console.log('readme-typing.svg file needs to be created..');
+          // Perform actions for a new file
+        } else {
+          // Handle other errors
+          console.error('Error checking if readme-typing.svg file exists:', error);
+        }
+      }
+    };
+    checkIfSvgFileExists();
+    await octokit.rest.repos.createOrUpdateFileContents({
+      owner: repo.owner,
+      repo: repo.repo,
+      path: 'readme-typing.svg',
+      message: 'create readme-typing.svg',
+      content: Buffer.from(svg).toString('base64'),
+      committer: {
+        name: COMMITTER_NAME,
+        email: COMMITTER_EMAIL
+      }
+    });
     // fs.writeFileSync('readme-typing.svg', svg)
 
     const { data: readmeData } = await octokit.rest.repos.getContent({
@@ -9893,7 +9922,7 @@ async function run() {
     const endIndex = readmeContent.indexOf(endTag);
 
     if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
-      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="${svg}" />\n${readmeContent.substring(endIndex)}`
+      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="readme-typing.svg" />\n${readmeContent.substring(endIndex)}`
 
       await octokit.rest.repos.createOrUpdateFileContents({
         owner: repo.owner,
