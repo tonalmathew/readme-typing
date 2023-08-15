@@ -63,7 +63,7 @@ export async function run() {
       }
     };
 
-    const {fileExist, sha} = checkIfSvgFileExists();
+    const {fileExist, sha} = await checkIfSvgFileExists();
     console.log(fileExist, sha)
 
     await octokit.rest.repos.createOrUpdateFileContents({
