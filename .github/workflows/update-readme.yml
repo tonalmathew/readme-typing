@@ -14,9 +14,6 @@ jobs:
       #   ref: ${{ github.head_ref }}
         # token: ${{ secrets.GH_TOKEN }}
 
-    - name: Print branch
-        run: echo "Branch: ${{ github.context.ref }}"
-
     - name: Run the action
       uses: ./
       env:
@@ -26,6 +23,9 @@ jobs:
           hello, from svg typing.
           This is dyamically generated.
           Hello!
+
+    - name: Print branch
+      run: echo "Branch: ${{ github.context.ref }}"
 
     # - name: Commit and push if it changed
     #   run: |
