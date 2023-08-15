@@ -9872,28 +9872,28 @@ async function run() {
           repo: repo.repo,
           path: 'readme-typing.svg',
         });
-        console.log(fileData)
-        if (Array.isArray(fileData)) {
-          // File exists
-          console.log('readme-typing.svg file is already created');
-          // Perform actions for an existing file
-        } else {
-          // File does not exist
-          console.log('readme-typing.svg file needs to be created');
-          // Perform actions for a new file
+        if (fileData) {
+          console.log('readme-typing.svg exists.');
+          return {
+            fileExist: true,
+            sha: fileData.sha
+          }
         }
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          // File does not exist
-          console.log('readme-typing.svg file needs to be created..');
-          // Perform actions for a new file
+          console.log('readme-typing.svg file needs to be created.');
+          return {
+            fileExist: false,
+            sha: null
+          }
         } else {
-          // Handle other errors
           console.error('Error checking if readme-typing.svg file exists:', error);
         }
       }
     };
-    checkIfSvgFileExists();
+
+    const {fileExist, sha} = checkIfSvgFileExists();
+
     await octokit.rest.repos.createOrUpdateFileContents({
       owner: repo.owner,
       repo: repo.repo,
@@ -9903,7 +9903,8 @@ async function run() {
       committer: {
         name: COMMITTER_NAME,
         email: COMMITTER_EMAIL
-      }
+      },
+      sha: fileExist && sha 
     });
     // fs.writeFileSync('readme-typing.svg', svg)
 
