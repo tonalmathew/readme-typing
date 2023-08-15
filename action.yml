@@ -3,11 +3,19 @@ author: 'Tonal Mathew'
 description: 'Text to svg in readme'
 
 inputs:
-  input-text:
+  INPUT-TEXT:
     description: 'Text to be displayed as svg'
     required: true
     type: string
     multiline: true
+  COMMITTER-NAME:
+    description: "Name of the committer"
+    default: "github-actions[bot]"
+    required: false
+  COMMITTER-EMAIL: 
+    description: "Email of the committer"
+    default: "41898282+github-actions[bot]@users.noreply.github.com"
+    required: false
 
 runs: 
   using: 'node16'
