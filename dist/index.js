@@ -9858,7 +9858,8 @@ async function run() {
       });
 
       svgContent += `\n</svg>`;
-      return svgContent;
+      const svgDataUrl = `data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`;
+      return svgDataUrl;
     }
 
     const svg = generateSvg(textArray);
@@ -9875,7 +9876,7 @@ async function run() {
     //     email: COMMITTER_EMAIL
     //   }
     // });
-    fs.writeFileSync('readme-typing.svg', svg)
+    // fs.writeFileSync('readme-typing.svg', svg)
 
     const { data: readmeData } = await octokit.rest.repos.getContent({
       owner: repo.owner,
@@ -9892,7 +9893,7 @@ async function run() {
     const endIndex = readmeContent.indexOf(endTag);
 
     if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
-      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="readme-typing.svg" />\n${readmeContent.substring(endIndex)}`
+      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="${svg}" />\n${readmeContent.substring(endIndex)}`
 
       await octokit.rest.repos.createOrUpdateFileContents({
         owner: repo.owner,
