@@ -16,8 +16,9 @@ jobs:
 
     - name: Run the action
       uses: ./
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
-        # token: ${{ secrets.GH_TOKEN }}
         input-text: |
           hello, from svg typing.
           This is dyamically generated.

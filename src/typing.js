@@ -4,7 +4,8 @@ const fs = require('fs');
 
 export async function run() {
   try {
-    const token = core.getInput('token');
+    // const token = core.getInput('token');
+    const token = process.env.GH_TOKEN;
     const inputText = core.getInput('input-text');
     const textArray = inputText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
