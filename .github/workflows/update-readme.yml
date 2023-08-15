@@ -13,11 +13,6 @@ jobs:
       # with:
       #   ref: ${{ github.head_ref }}
         # token: ${{ secrets.GH_TOKEN }}
-        
-    - name: Print branch
-      run: |
-        echo "Branch ${{ github.ref }}"
-        echo "Branch ${{ github.head_ref }}"
 
     - name: Run the action
       uses: ./
