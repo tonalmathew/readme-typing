@@ -20,7 +20,7 @@ jobs:
         input-text: |
           hello, from svg typing.
           This is dyamically generated.
-          Hmm...
+          Hello!
 
     - name: Commit and push if it changed
       run: |
