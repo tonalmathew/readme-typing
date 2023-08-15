@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 
-async function run() {
+export async function run() {
   try {
     const INPUT_TEXT = core.getInput('INPUT-TEXT');
     const COMMITTER_NAME = core.getInput('COMMITTER-NAME');
@@ -80,5 +80,3 @@ async function run() {
     core.setFailed(error.message);
   }
 }
-
-run();

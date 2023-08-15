@@ -9634,97 +9634,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 7789:
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const core = __nccwpck_require__(2186);
-const github = __nccwpck_require__(5438);
-const fs = __nccwpck_require__(7147);
-
-async function run() {
-  try {
-    const INPUT_TEXT = core.getInput('INPUT-TEXT');
-    const COMMITTER_NAME = core.getInput('COMMITTER-NAME');
-    const COMMITTER_EMAIL = core.getInput('COMMITTER-EMAIL');
-    const textArray = INPUT_TEXT.split('\n').map(line => line.trim()).filter(line => line.length > 0);
-
-    const generateSvg = (texts) => {
-      let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 50" style="background-color: #00000000;" width="400px" height="50px">\n`;
-      const length = texts.length
-      texts.forEach((text, index) => {
-        const pathId = `path${index}`;
-        const animateId = `d${index}`;
-        const animateBegin = index === 0 ? `0s;d${length - 1}.end` : `d${index - 1}.end`;
-
-        svgContent += `
-          <path id="${pathId}">
-            <animate id="${animateId}" attributeName="d" begin="${animateBegin}" dur="5000ms" fill="remove" values="m0,25 h0 ; m0,25 h400 ; m0,25 h400 ; m0,25 h0" keyTimes="0;0.8;0.8;1"/>
-          </path>
-          <text font-family="monospace" fill="#36BCF7" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
-            <textPath xlink:href="#${pathId}">
-              ${text}
-            </textPath>
-          </text>`;
-      });
-
-      svgContent += `\n</svg>`;
-      return svgContent;
-    }
-
-    const svg = generateSvg(textArray);
-    fs.writeFileSync('readme-typing.svg', svg);
-
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-    const repo = github.context.repo;
-
-    const createOrUpdateReadme = async (octokit, repo, path, content) => {
-      const { data: readmeData } = await octokit.rest.repos.createOrUpdateFileContents({
-        owner: repo.owner,
-        repo: repo.repo,
-        path: path,
-        message: 'Update README with svg text',
-        content: Buffer.from(content).toString('base64'),
-        committer: {
-          name: COMMITTER_NAME,
-          email: COMMITTER_EMAIL
-        }
-      });
-
-      return readmeData.sha;
-    };
-
-    const { data: readmeData } = await octokit.rest.repos.getContent({
-      owner: repo.owner,
-      repo: repo.repo,
-      path: 'README.md',
-    });
-    const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
-
-    const startTag = '<!-- START:readme-typing -->';
-    const endTag = '<!-- END:readme-typing -->';
-
-    const startIndex = readmeContent.indexOf(startTag);
-    const endIndex = readmeContent.indexOf(endTag);
-
-    if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
-      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="readme-typing.svg" />\n${readmeContent.substring(endIndex)}`;
-
-      const readmeSha = await createOrUpdateReadme(octokit, repo, 'README.md', updatedReadme);
-
-      console.log('SVG content added to README.md');
-    } else {
-      console.error('Could not locate start and end tags in README.md');
-    }
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run();
-
-
-/***/ }),
-
 /***/ 2877:
 /***/ ((module) => {
 
@@ -9894,35 +9803,6 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -9943,12 +9823,97 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
+// ESM COMPAT FLAG
 __nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var _typing__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(7789);
-/* harmony import */ var _typing__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_typing__WEBPACK_IMPORTED_MODULE_0__);
+
+;// CONCATENATED MODULE: ./src/typing.js
+const core = __nccwpck_require__(2186);
+const github = __nccwpck_require__(5438);
+const fs = __nccwpck_require__(7147);
+
+async function run() {
+  try {
+    const INPUT_TEXT = core.getInput('INPUT-TEXT');
+    const COMMITTER_NAME = core.getInput('COMMITTER-NAME');
+    const COMMITTER_EMAIL = core.getInput('COMMITTER-EMAIL');
+    const textArray = INPUT_TEXT.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+
+    const generateSvg = (texts) => {
+      let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 50" style="background-color: #00000000;" width="400px" height="50px">\n`;
+      const length = texts.length
+      texts.forEach((text, index) => {
+        const pathId = `path${index}`;
+        const animateId = `d${index}`;
+        const animateBegin = index === 0 ? `0s;d${length - 1}.end` : `d${index - 1}.end`;
+
+        svgContent += `
+          <path id="${pathId}">
+            <animate id="${animateId}" attributeName="d" begin="${animateBegin}" dur="5000ms" fill="remove" values="m0,25 h0 ; m0,25 h400 ; m0,25 h400 ; m0,25 h0" keyTimes="0;0.8;0.8;1"/>
+          </path>
+          <text font-family="monospace" fill="#36BCF7" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
+            <textPath xlink:href="#${pathId}">
+              ${text}
+            </textPath>
+          </text>`;
+      });
+
+      svgContent += `\n</svg>`;
+      return svgContent;
+    }
+
+    const svg = generateSvg(textArray);
+    fs.writeFileSync('readme-typing.svg', svg);
+
+    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    const repo = github.context.repo;
+
+    const createOrUpdateReadme = async (octokit, repo, path, content) => {
+      const { data: readmeData } = await octokit.rest.repos.createOrUpdateFileContents({
+        owner: repo.owner,
+        repo: repo.repo,
+        path: path,
+        message: 'Update README with svg text',
+        content: Buffer.from(content).toString('base64'),
+        committer: {
+          name: COMMITTER_NAME,
+          email: COMMITTER_EMAIL
+        }
+      });
+
+      return readmeData.sha;
+    };
+
+    const { data: readmeData } = await octokit.rest.repos.getContent({
+      owner: repo.owner,
+      repo: repo.repo,
+      path: 'README.md',
+    });
+    const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
+
+    const startTag = '<!-- START:readme-typing -->';
+    const endTag = '<!-- END:readme-typing -->';
+
+    const startIndex = readmeContent.indexOf(startTag);
+    const endIndex = readmeContent.indexOf(endTag);
+
+    if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
+      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="readme-typing.svg" />\n${readmeContent.substring(endIndex)}`;
+
+      const readmeSha = await createOrUpdateReadme(octokit, repo, 'README.md', updatedReadme);
+
+      console.log('SVG content added to README.md');
+    } else {
+      console.error('Could not locate start and end tags in README.md');
+    }
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+;// CONCATENATED MODULE: ./src/index.js
 
 
-(0,_typing__WEBPACK_IMPORTED_MODULE_0__.run)()
+run()
 })();
 
 module.exports = __webpack_exports__;
