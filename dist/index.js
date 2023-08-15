@@ -9862,9 +9862,21 @@ async function run() {
     }
 
     const svg = generateSvg(textArray);
-    fs.writeFileSync('readme-typing.svg', svg)
-
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    await octokit.rest.repos.createOrUpdateFileContents({
+      owner: repo.owner,
+      repo: repo.repo,
+      path: 'readme-typing.svg',
+      message: 'create readme-typing.svg',
+      content: Buffer.from(svg).toString('base64'),
+      committer: {
+        name: COMMITTER_NAME,
+        email: COMMITTER_EMAIL
+      },
+      sha: readmeData.sha
+    });
+    // fs.writeFileSync('readme-typing.svg', svg)
+
     const repo = github.context.repo;
     const { data: readmeData } = await octokit.rest.repos.getContent({
       owner: repo.owner,
