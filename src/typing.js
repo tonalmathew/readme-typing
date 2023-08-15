@@ -29,11 +29,11 @@ export async function run() {
       });
 
       svgContent += `\n</svg>`;
-      return svgContent;
+      const svgDataUrl = `data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`;
+      return svgDataUrl;
     }
 
     const svg = generateSvg(textArray);
-    const svgDataUrl = `data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`;
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const repo = github.context.repo;
     // await octokit.rest.repos.createOrUpdateFileContents({
@@ -64,7 +64,7 @@ export async function run() {
     const endIndex = readmeContent.indexOf(endTag);
 
     if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
-      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="${svgDataUrl}" />\n${readmeContent.substring(endIndex)}`
+      const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="${svg}" />\n${readmeContent.substring(endIndex)}`
 
       await octokit.rest.repos.createOrUpdateFileContents({
         owner: repo.owner,
