@@ -10,8 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
+      # with:
+      #   ref: ${{ github.head_ref }}
         # token: ${{ secrets.GH_TOKEN }}
 
     - name: Run the action
