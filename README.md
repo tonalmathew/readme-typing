@@ -10,6 +10,7 @@ Update `README.md` with SVG typing texts.
   <!-- START:readme-typing --> 
   <!-- END:readme-typing -->
   ``` 
+  > you can find an example [here](https://github.com/tonalmathew/tonalmathew)
 
 - Create a workflow file
 
