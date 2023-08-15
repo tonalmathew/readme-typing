@@ -52,6 +52,7 @@ export async function run() {
       owner: repo.owner,
       repo: repo.repo,
       path: 'README.md',
+      ref: github.context.ref
     });
     const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
     // const readmeContent = fs.readFileSync('README.md', 'utf8');
