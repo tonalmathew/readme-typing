@@ -25,8 +25,8 @@ jobs:
           Hello!
 
     - name: Print branch
-      run: echo "Branch: ${{ github.head_ref }}"
-
+      run: echo "Branch ${{ github.context.ref }}"
+      
     # - name: Commit and push if it changed
     #   run: |
     #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
