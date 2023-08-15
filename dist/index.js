@@ -9873,8 +9873,7 @@ async function run() {
       committer: {
         name: COMMITTER_NAME,
         email: COMMITTER_EMAIL
-      },
-      sha: readmeData.sha
+      }
     });
     // fs.writeFileSync('readme-typing.svg', svg)
 
