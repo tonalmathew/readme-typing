@@ -25,7 +25,7 @@ jobs:
           Hello!
 
     - name: Print branch
-      run: echo "Branch ${{ github.context.ref }}"
+      run: echo "Branch ${{ github.head_ref }}"
       
     # - name: Commit and push if it changed
     #   run: |
