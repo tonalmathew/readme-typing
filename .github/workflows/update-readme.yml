@@ -1,10 +1,7 @@
 name: test run
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -27,8 +24,8 @@ jobs:
 
     - name: Commit and push if it changed
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add readme-typing.svg
         git commit -m "[feat] update readme-typing.svg" || exit 0
         git push origin ${{ github.head_ref }}
