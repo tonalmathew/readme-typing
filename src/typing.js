@@ -35,6 +35,7 @@ export async function run() {
     const svg = generateSvg(textArray);
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const repo = github.context.repo;
+    console.log('ref', github.context.ref)
     await octokit.rest.repos.createOrUpdateFileContents({
       owner: repo.owner,
       repo: repo.repo,

@@ -9864,6 +9864,7 @@ async function run() {
     const svg = generateSvg(textArray);
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
     const repo = github.context.repo;
+    console.log('ref', github.context.ref)
     await octokit.rest.repos.createOrUpdateFileContents({
       owner: repo.owner,
       repo: repo.repo,
@@ -9881,6 +9882,7 @@ async function run() {
       owner: repo.owner,
       repo: repo.repo,
       path: 'README.md',
+      ref: github.context.ref
     });
     const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
     // const readmeContent = fs.readFileSync('README.md', 'utf8');
