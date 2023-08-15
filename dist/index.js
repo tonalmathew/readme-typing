@@ -9862,7 +9862,7 @@ async function run() {
     const svg = generateSvg(textArray);
     fs.writeFileSync('readme-typing.svg', svg)
 
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    const octokit = github.getOctokit(process.env.GH_TOKEN);
     const repo = github.context.repo;
     const { data: readmeData } = await octokit.rest.repos.getContent({
       owner: repo.owner,
