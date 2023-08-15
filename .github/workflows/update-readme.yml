@@ -15,7 +15,7 @@ jobs:
         # token: ${{ secrets.GH_TOKEN }}
 
     - name: Print branch
-      run: echo "Branch: ${{ github.context.ref }}"
+        run: echo "Branch: ${{ github.context.ref }}"
 
     - name: Run the action
       uses: ./
