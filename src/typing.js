@@ -1,5 +1,4 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const fs = require('fs');
 
 export async function run() {
@@ -32,16 +31,7 @@ export async function run() {
 
     const svg = generateSvg(textArray);
     fs.writeFileSync('readme-typing.svg', svg)
-
-    const octokit = github.getOctokit(process.env.GH_TOKEN);
-    const repo = github.context.repo;
-    const { data: readmeData } = await octokit.rest.repos.getContent({
-      owner: repo.owner,
-      repo: repo.repo,
-      path: 'README.md',
-    });
-    const readmeContent = Buffer.from(readmeData.content, 'base64').toString('utf-8');
-    // const readmeContent = fs.readFileSync('README.md', 'utf8');
+    const readmeContent = fs.readFileSync('README.md', 'utf8');
 
     const startTag = '<!-- START:readme-typing -->';
     const endTag = '<!-- END:readme-typing -->';
@@ -52,17 +42,7 @@ export async function run() {
     if (startIndex !== -1 && endIndex !== -1 && startIndex < endIndex) {
       const updatedReadme = `${readmeContent.substring(0, startIndex + startTag.length)}\n<img src="readme-typing.svg" />\n${readmeContent.substring(endIndex)}`
 
-      await octokit.rest.repos.createOrUpdateFileContents({
-        owner: repo.owner,
-        repo: repo.repo,
-        path: 'README.md',
-        message: 'Update README with svg text',
-        content: Buffer.from(updatedReadme).toString('base64'),
-        sha: readmeData.sha,
-        branch: github.context.payload.ref.replace('refs/heads/', '')
-      });
-
-      // fs.writeFileSync('README.md', updatedReadme);
+      fs.writeFileSync('README.md', updatedReadme);
       console.log('SVG content added to README.md');
     } else {
       console.error('Could not locate start and end tags in README.md');
