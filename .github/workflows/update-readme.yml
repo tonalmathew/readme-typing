@@ -1,10 +1,7 @@
 name: test run
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -33,3 +30,4 @@ jobs:
         git commit -m "[feat] update readme-typing.svg" || exit 0
         git push origin ${{ github.head_ref }}
         echo "Changes committed and pushed."
+
