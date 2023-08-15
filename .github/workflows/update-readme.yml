@@ -1,4 +1,4 @@
-name: test run
+name: Readme - svg text
 
 on:
   workflow_dispatch:
