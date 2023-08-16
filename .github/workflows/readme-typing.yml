@@ -1,0 +1,19 @@
+name: Readme - svg text
+on:
+  workflow_dispatch:
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Run the action
+      uses: ./
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        INPUT_TEXT: |
+          Add a bio to your profile!
+          Add a description to your repo!
+          Make your readme stand out!
+        COLOR: '#06d6a0'
