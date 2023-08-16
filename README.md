@@ -1,6 +1,7 @@
 <h3 align="center">Typing - Readme SVG Text</h3>
 <p align="center">
-<!-- START:readme-typing --> 
+<!-- START:readme-typing -->
+<img src="readme-typing.svg" />
 <!-- END:readme-typing -->
 </p>
 <p align="center">Update your readme with SVG typing texts.</p>
