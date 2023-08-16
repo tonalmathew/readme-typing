@@ -14,7 +14,7 @@ inputs:
     required: false
   TEXT_ALIGN: 
     description: 'Align the svg text position'
-    default: 'start'
+    default: 'start'   # 'start' or 'center'
     required: false
   COMMITTER_NAME:
     description: 'Name of the committer'

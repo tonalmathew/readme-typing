@@ -53,6 +53,7 @@ Use the following input params to customize it for your use case:-
 | `COMMITTER_NAME`  | github-actions[bot]                                   | Name of the committer                                     |
 | `COMMITTER_EMAIL` | 41898282+github-actions[bot]@users.noreply.github.com | Email of the committer                                    |
 | `COLOR`           | #36BCF7                                               | Color of the text                                         |
+| `TEXT_ALIGN`      | start                                                 | Align the svg text position                               |
 
 
 _An alternative method for [DenverCoder1/readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg)_
