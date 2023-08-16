@@ -8,13 +8,17 @@ inputs:
     required: true
     type: string
     multiline: true
+  COLOR: 
+    description: 'Text color'
+    default: '#36BCF7'
+    required: false
   COMMITTER_NAME:
-    description: "Name of the committer"
-    default: "github-actions[bot]"
+    description: 'Name of the committer'
+    default: 'github-actions[bot]'
     required: false
   COMMITTER_EMAIL: 
-    description: "Email of the committer"
-    default: "41898282+github-actions[bot]@users.noreply.github.com"
+    description: 'Email of the committer'
+    default: '41898282+github-actions[bot]@users.noreply.github.com'
     required: false
 
 branding:

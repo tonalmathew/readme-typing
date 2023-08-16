@@ -6,6 +6,7 @@ export async function run() {
     const INPUT_TEXT = core.getInput('INPUT_TEXT');
     const COMMITTER_NAME = core.getInput('COMMITTER_NAME');
     const COMMITTER_EMAIL = core.getInput('COMMITTER_EMAIL');
+    const COLOR = core.getInput('COLOR');
     const textArray = INPUT_TEXT.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
     const generateSvg = (texts) => {
@@ -20,7 +21,7 @@ export async function run() {
           <path id="${pathId}">
             <animate id="${animateId}" attributeName="d" begin="${animateBegin}" dur="5000ms" fill="remove" values="m0,25 h0 ; m0,25 h400 ; m0,25 h400 ; m0,25 h0" keyTimes="0;0.8;0.8;1"/>
           </path>
-          <text font-family="monospace" fill="#36BCF7" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
+          <text font-family="monospace" fill="${COLOR}" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
             <textPath xlink:href="#${pathId}">
               ${text}
             </textPath>
