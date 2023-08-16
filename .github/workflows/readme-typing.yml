@@ -17,3 +17,4 @@ jobs:
           Add a description to your repo!
           Make your readme stand out!
         COLOR: '#06d6a0'
+        TEXT_ALIGN: 'center'

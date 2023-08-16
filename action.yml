@@ -12,6 +12,10 @@ inputs:
     description: 'Text color'
     default: '#36BCF7'
     required: false
+  TEXT_ALIGN: 
+    description: 'Align the svg text position'
+    default: 'start'
+    required: false
   COMMITTER_NAME:
     description: 'Name of the committer'
     default: 'github-actions[bot]'

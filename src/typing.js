@@ -7,6 +7,7 @@ export async function run() {
     const COMMITTER_NAME = core.getInput('COMMITTER_NAME');
     const COMMITTER_EMAIL = core.getInput('COMMITTER_EMAIL');
     const COLOR = core.getInput('COLOR');
+    const TEXT_ALIGN = core.getInput('TEXT_ALIGN');
     const textArray = INPUT_TEXT.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
     const generateSvg = (texts) => {
@@ -16,12 +17,22 @@ export async function run() {
         const pathId = `path${index}`;
         const animateId = `d${index}`;
         const animateBegin = index === 0 ? `0s;d${length - 1}.end` : `d${index - 1}.end`;
+        let db, x, ta
+        if(TEXT_ALIGN === 'start'){
+          db = 'auto'
+          x=0
+          ta='start'
+        } else if(TEXT_ALIGN === 'center') {
+          db = 'start'
+          x=50
+          ta='start'
+        }
 
         svgContent += `
           <path id="${pathId}">
             <animate id="${animateId}" attributeName="d" begin="${animateBegin}" dur="5000ms" fill="remove" values="m0,25 h0 ; m0,25 h400 ; m0,25 h400 ; m0,25 h0" keyTimes="0;0.8;0.8;1"/>
           </path>
-          <text font-family="monospace" fill="${COLOR}" font-size="20" dominant-baseline="auto" x="0%" text-anchor="start">
+          <text font-family="monospace" fill="${COLOR}" font-size="20" dominant-baseline="${db}" x="${x}%" text-anchor="${ta}">
             <textPath xlink:href="#${pathId}">
               ${text}
             </textPath>
