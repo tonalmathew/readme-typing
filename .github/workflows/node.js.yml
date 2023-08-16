@@ -14,11 +14,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GH_TOKEN }}
       - name: Use Node 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          ref: ${{ github.head_ref }}
       - run: npm ci
       - run: npm run build
       - run: |
