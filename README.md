@@ -1,8 +1,9 @@
-<div style="text-align: center">
-
-### Typing - Readme SVG Text
-
-Update `README.md` with SVG typing texts.
+<h3 align="center">Typing - Readme SVG Text</h3>
+<p align="center">
+<!-- START:readme-typing --> 
+<!-- END:readme-typing -->
+</p>
+<p align="center">Update `README.md` with SVG typing texts.</p>
 
 </div>
 
