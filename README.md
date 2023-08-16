@@ -1,6 +1,10 @@
-## Typing - Readme SVG Text
+<div style="text-align: center">
+
+### Typing - Readme SVG Text
 
 Update `README.md` with SVG typing texts.
+
+</div>
 
 ## Instructions
 
