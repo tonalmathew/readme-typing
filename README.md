@@ -3,7 +3,7 @@
 <!-- START:readme-typing --> 
 <!-- END:readme-typing -->
 </p>
-<p align="center">Update `README.md` with SVG typing texts.</p>
+<p align="center">Update your readme with SVG typing texts.</p>
 
 </div>
 
