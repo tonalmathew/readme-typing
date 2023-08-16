@@ -18,5 +18,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          ref: ${{ github.head_ref }}
       - run: npm ci
       - run: npm run build
+      - run: |
+          git add dist/index.js
+          git commit -m "chore: update build file"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git push origin ${{ github.head_ref }}
+          echo "Updated build file"
