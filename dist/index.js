@@ -9852,9 +9852,9 @@ async function run() {
           x=0
           ta='start'
         } else if(TEXT_ALIGN === 'center') {
-          db = 'start'
+          db = 'middle'
           x=50
-          ta='start'
+          ta='middle'
         }
 
         svgContent += `
