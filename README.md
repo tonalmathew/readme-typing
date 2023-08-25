@@ -29,17 +29,17 @@
   jobs:
     update-readme:
       runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Run the action
-      uses: tonalmathew/readme-typing@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        input-text: |
-          Hello, from svg typing.
-          Add more text line by line.
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run the action
+        uses: tonalmathew/readme-typing@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          input-text: |
+            Hello, from svg typing.
+            Add more text line by line.
   ```
 
 - The above job won't run automatically, you need to run the job manually from the actions tab.
